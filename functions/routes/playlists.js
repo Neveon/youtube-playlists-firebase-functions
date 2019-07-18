@@ -24,8 +24,6 @@ exports.addPlaylist = (req, res) => {
     return res.status(400).json({ general: 'Playlist name must not be empty' });
   }
 
-  console.log(req.body);
-
   const newPlaylist = {
     createdAt: new Date().toISOString(),
     list: req.body.list,
