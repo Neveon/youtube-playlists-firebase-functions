@@ -1,8 +1,22 @@
 const { admin, db } = require('../util/admin');
 
-exports.getAllPlaylists = (req, res) => {
+exports.getPlaylists = (req, res) => {
   db.collection('playlists')
     .where('userId', '==', req.user.userId) // from req.user FBAuth
+    .orderBy('createdAt', 'desc') // query requires an index
+    .get()
+    .then(data => {
+      let playlists = [];
+      data.forEach(doc => {
+        playlists.push(doc.data());
+      });
+      return res.json(playlists);
+    })
+    .catch(err => console.error(err));
+};
+
+exports.getAllPlaylists = (req, res) => {
+  db.collection('playlists')
     .orderBy('createdAt', 'desc') // query requires an index
     .get()
     .then(data => {

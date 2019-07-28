@@ -10,6 +10,7 @@ app.use(express.json());
 
 // Playlists routes
 const {
+  getPlaylists,
   getAllPlaylists,
   addPlaylist,
   addVideo,
@@ -21,7 +22,9 @@ const {
 const { signup, login } = require('./routes/users');
 
 // Get all user's playlists
-app.get('/playlists', FBAuth, getAllPlaylists);
+app.get('/playlists', FBAuth, getPlaylists);
+// Get all playlists
+app.get('/playlists', getAllPlaylists);
 // Add new playlist
 app.put('/addPlaylist', FBAuth, addPlaylist);
 // Remove playlist
