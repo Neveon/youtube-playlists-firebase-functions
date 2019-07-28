@@ -24,7 +24,7 @@ const { signup, login } = require('./routes/users');
 // Get all user's playlists
 app.get('/playlists', FBAuth, getPlaylists);
 // Get all playlists
-app.get('/playlists', getAllPlaylists);
+app.get('/allPlaylists', getAllPlaylists);
 // Add new playlist
 app.put('/addPlaylist', FBAuth, addPlaylist);
 // Remove playlist
