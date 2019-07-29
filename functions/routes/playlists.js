@@ -14,6 +14,15 @@ exports.getPlaylists = (req, res) => {
     })
     .catch(err => console.error(err));
 };
+exports.getOnePlaylist = (req, res) => {
+  db.doc(`/playlists/${req.body.name}`)
+    .get()
+    .then(doc => {
+      let playlist = doc.data();
+      return res.json(playlist);
+    })
+    .catch(err => console.error(err));
+};
 
 exports.getAllPlaylists = (req, res) => {
   db.collection('playlists')
