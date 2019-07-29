@@ -36,6 +36,12 @@ exports.addPlaylist = (req, res) => {
       .json({ general: 'Playlist must contain at least one video ID' });
   } else if (req.body.name.trim() === '') {
     return res.status(400).json({ general: 'Playlist name must not be empty' });
+  } else if (req.body.name.split(' ').length > 1) {
+    return res
+      .status(400)
+      .json({
+        general: 'Playlist name must not contain whitespace, use underscore "_"'
+      });
   }
 
   const newPlaylist = {
