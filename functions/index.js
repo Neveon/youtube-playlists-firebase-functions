@@ -19,7 +19,7 @@ const {
 } = require('./routes/playlists');
 
 // User routes
-const { signup, login } = require('./routes/users');
+const { signup, login, getAuthenticatedUser } = require('./routes/users');
 
 // Get all user's playlists
 app.get('/playlists', FBAuth, getPlaylists);
@@ -38,5 +38,7 @@ app.post('/removePlaylistVideo', FBAuth, removeVideo);
 app.post('/signup', signup);
 // Login route
 app.post('/login', login);
+// Get own user's details
+app.get('/user', FBAuth, getAuthenticatedUser);
 
 exports.api = functions.https.onRequest(app);

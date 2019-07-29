@@ -27,6 +27,7 @@ module.exports = (req, res, next) => {
     .then(data => {
       // Passing userId from users collection to req.user.userId
       req.user.userId = data.docs[0].data().userId;
+      req.user.username = data.docs[0].data().username; // Used to get authenticated user details
       return next();
     })
     .catch(err => {

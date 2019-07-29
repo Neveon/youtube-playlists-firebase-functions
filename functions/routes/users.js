@@ -84,3 +84,24 @@ exports.login = (req, res) => {
         .json({ general: 'Wrong Credentials, please try again' });
     });
 };
+
+// Get own user's details
+exports.getAuthenticatedUser = (req, res) => {
+  let userData = {}; // response data
+
+  db.doc(`/users/${req.user.username}`) // from FBAuth
+    .get()
+    .then(doc => {
+      // Credentials holds user info
+      userData.credentials = {
+        userId: doc.data().userId,
+        username: doc.data().username
+      };
+      // returns user's data
+      return res.json(userData);
+    })
+    .catch(err => {
+      console.error(err);
+      return res.status(500).json({ error: err.code });
+    });
+};
