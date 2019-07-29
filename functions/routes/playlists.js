@@ -37,11 +37,9 @@ exports.addPlaylist = (req, res) => {
   } else if (req.body.name.trim() === '') {
     return res.status(400).json({ general: 'Playlist name must not be empty' });
   } else if (req.body.name.split(' ').length > 1) {
-    return res
-      .status(400)
-      .json({
-        general: 'Playlist name must not contain whitespace, use underscore "_"'
-      });
+    return res.status(400).json({
+      general: 'Playlist name must not contain whitespace, use underscore "_"'
+    });
   }
 
   const newPlaylist = {
@@ -54,9 +52,7 @@ exports.addPlaylist = (req, res) => {
   db.doc(`/playlists/${newPlaylist.name}`)
     .set(newPlaylist)
     .then(() => {
-      return res
-        .status(201)
-        .json({ message: `${newPlaylist.name} created successfully` });
+      return res.status(201).json(newPlaylist);
     })
     .catch(err => {
       res.status(500).json({ error: 'somthing went wrong' });
