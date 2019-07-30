@@ -27,7 +27,7 @@ app.get('/playlists', FBAuth, getPlaylists);
 // Get all playlists
 app.get('/allPlaylists', getAllPlaylists);
 // Get one playlist
-app.get('/playlist', getOnePlaylist);
+app.post('/playlist', getOnePlaylist);
 // Add new playlist
 app.put('/addPlaylist', FBAuth, addPlaylist);
 // Remove playlist

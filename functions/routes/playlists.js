@@ -19,7 +19,7 @@ exports.getOnePlaylist = (req, res) => {
     .get()
     .then(doc => {
       let playlist = doc.data();
-      return res.json(playlist);
+      return res.status(200).json(playlist);
     })
     .catch(err => console.error(err));
 };
